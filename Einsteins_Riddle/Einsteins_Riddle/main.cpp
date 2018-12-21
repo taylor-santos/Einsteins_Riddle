@@ -80,9 +80,9 @@ void print_grid(vector<vector<string>> items, vector<vector<int>> correlations, 
 		/*Find the longest label+id for the vertical and horizontal labels*/
 		for (int j = 0; j < item_count; ++j) { 
 			if (i<cat_count-1)	//Vertical categories do not include the last category
-				max_vertical_element_name_length = max(max_vertical_element_name_length, (int)items[i][j].size() + num_digits(cat_count*i+j+1) + 1); //Length of item label + length of item id + space
+				max_vertical_element_name_length = max(max_vertical_element_name_length, (int)items[i][j].size() + num_digits(cat_count*item_count+item_count+1) + 1); //Length of item label + length of item id + space
 			if (i!=0)	//Horizontal categories do not include the first category
-				max_horizontal_element_name_length = max(max_horizontal_element_name_length, (int)items[i][j].size() + num_digits(cat_count*i + j + 1) + 1); //Length of item label + length of item id + space
+				max_horizontal_element_name_length = max(max_horizontal_element_name_length, (int)items[i][j].size() + num_digits(cat_count*item_count + item_count + 1) + 1); //Length of item label + length of item id + space
 		}
 	}
 	vector<vector<char>> labels = vector<vector<char>>(cat_count*(cat_count - 1));
