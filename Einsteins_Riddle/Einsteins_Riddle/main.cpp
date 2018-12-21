@@ -85,19 +85,19 @@ void print_grid(vector<vector<string>> items, vector<vector<int>> correlations, 
 				max_horizontal_element_name_length = max(max_horizontal_element_name_length, (int)items[i][j].size() + num_digits(cat_count*item_count + item_count + 1) + 1); //Length of item label + length of item id + space
 		}
 	}
-	vector<vector<char>> labels = vector<vector<char>>(cat_count*(cat_count - 1));
+	vector<vector<char>> labels = vector<vector<char>>(item_count*(cat_count - 1));
 	for (int i = 0; i < cat_count - 1; ++i) {
 		for (int j = 0; j < item_count; ++j) {
-			labels[cat_count*i + j] = vector<char>(max_vertical_element_name_length);
+			labels[item_count*i + j] = vector<char>(max_vertical_element_name_length);
 			for (int k = 0; k < items[i][j].length(); ++k) {
-				labels[cat_count*i + j][max_vertical_element_name_length - items[i][j].length() + k] = items[i][j][k];
+				labels[item_count*i + j][max_vertical_element_name_length - items[i][j].length() + k] = items[i][j][k];
 			}
 			int id = item_count*i + j + 1;
 			int digit_diff = num_digits(cat_count*item_count) - num_digits(id);
 			for (int k = 0; k < num_digits(id); ++k) {
-				labels[cat_count*i + j][digit_diff+k] = to_string(id)[k];
+				labels[item_count*i + j][digit_diff+k] = to_string(id)[k];
 			}
-			labels[cat_count*i + j][num_digits(cat_count*item_count)] = HORIZ_BAR;
+			labels[item_count*i + j][num_digits(cat_count*item_count)] = HORIZ_BAR;
 		}
 	}
 	for (int i = 0; i < max_vertical_element_name_length; ++i) {
@@ -105,8 +105,8 @@ void print_grid(vector<vector<string>> items, vector<vector<int>> correlations, 
 		cout << VERT_BAR << " ";
 		for (int j = 0; j < cat_count - 1; ++j) {
 			for (int k = 0; k < item_count; ++k) {
-				if (labels[cat_count*j + k][i] != 0)
-					cout << labels[cat_count*j + k][i];
+				if (labels[item_count*j + k][i] != 0)
+					cout << labels[item_count*j + k][i];
 				else
 					cout << " ";
 				cout << " ";
